@@ -11,9 +11,9 @@ class FoodCycle extends Component {
     users: [],
   }
 
-  loadUsers = () => {
+  loadUsers = async () => {
     const userURL = 'http://127.0.0.1:8000/api/user/donee-info/'
-    axios
+    await axios
     .get(userURL, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
       console.log('Loaded Users');
@@ -30,9 +30,9 @@ class FoodCycle extends Component {
     });
   };
 
-  loadDonations = () => {
+  loadDonations = async () => {
     const donationURL = 'http://127.0.0.1:8000/api/donation/donations/'
-    axios
+    await axios
     .get(donationURL, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
       console.log('Loaded Donations');
@@ -105,7 +105,7 @@ class FoodCycle extends Component {
         console.log(this.state.token)
         axios
           .get(userURL, { headers: { Authorization: "Token " + this.state.token}})
-          .then(response => {
+          .then(async (response) => {
             console.log('I got the user info!')
             // console.log(response.data)
             this.setState({
@@ -113,8 +113,8 @@ class FoodCycle extends Component {
               error: '',
             });
             console.log(this.state.user)
-            this.loadDonations();
-            this.loadUsers();
+            await this.loadDonations();
+            await this.loadUsers();
             this.decideUser();
 
           })
