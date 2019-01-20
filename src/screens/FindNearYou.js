@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, Alert, Button, TouchableHighlight} from 'react-native';
+import { H1 } from 'native-base';
 import { MapView } from 'expo';
 import axios from 'axios';
 
@@ -9,6 +10,9 @@ import axios from 'axios';
 //       coordinate={marker['marker']}
 //     />
 //   ))}
+
+// ISSUE WITH ONPRESS FOR MARKERS:
+// https://github.com/react-native-community/react-native-maps/issues/1132
 
 class FindNearYou extends Component {
   state = {
@@ -61,7 +65,11 @@ class FindNearYou extends Component {
       .then(response => {
         const latitude = response.data.results[0].geometry.location['lat']
         const longitude = response.data.results[0].geometry.location['lng']
-        markers.push({latitude, longitude})
+        const coordinates = { marker: {latitude, longitude},
+          donorName: rightUser['company_name'], donorStreetAddress: rightUser['street_address'],
+          donorID: rightUser['id']}
+        console.log(coordinates['coordinates'])
+        markers.push(coordinates)
       })
       .catch(() => {
         console.log('load marker error');
@@ -72,19 +80,27 @@ class FindNearYou extends Component {
       markers,
       isLoaded: true,
     })
+    console.log(markers)
   };
 
   renderMarkers = () => {
       return this.state.markers.map((marker, index) => {
-          const coords = {marker};
-          console.log(marker['marker'])
           return (
             <MapView.Marker
               key={index}
-              coordinate={coords['marker']}
+              coordinate={marker['marker']}
+              title={marker['donorName']}
+              description={marker['donorStreetAddress']}
+              onPress={(e) => {e.stopPropagation(); this.onMarkerPress(marker['donorID'])}}
             />
           );
         });
+  }
+
+  onMarkerPress= (donorID) => {
+    console.log('MARKER WAS CLICKED!')
+    console.log(donorID)
+    this.props.navigation.navigate('DonorDonationsToday');
   }
 
   render() {
@@ -92,8 +108,15 @@ class FindNearYou extends Component {
     console.log(this.state.userMarker['longitude'])
     return (
       <View>
+        <View style={styles.titleView}>
+          <H1 style={styles.headerText}>Find Donations By Map</H1>
+          <Text style={styles.mapText}>Select donor location marker for specific donations offered today</Text>
+          <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('SignUp')}>
+              <Text>Register</Text>
+          </TouchableHighlight>
+        </View>
         <MapView
-          style={{ width: 400, height: 400 }}
+          style={{ width: 400, height: 600 }}
           provider="google"
           showsUserLocation={true}
           initialRegion={{
@@ -104,10 +127,12 @@ class FindNearYou extends Component {
           }}
         >
         <MapView.Marker
+          key={100000}
           coordinate={this.state.userMarker}
           title={"My Location"}
-          // description={"Bananas: 40 lb"}
+          pinColor={'#0000ff'}
         />
+
 
         { this.state.isLoaded && this.renderMarkers()}
 
@@ -117,5 +142,33 @@ class FindNearYou extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  mapText: {
+    fontFamily: 'Futura',
+    textAlign: 'center',
+    paddingBottom: 10,
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
+  headerText: {
+    textAlign: 'center',
+    fontFamily: 'Futura',
+    fontWeight: 'bold',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  titleView: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+  },
+  calloutText: {
+    fontFamily: 'Futura',
+    padding: 15,
+  },
+  customView: {
+    height: 100,
+  }
+})
 
 export { FindNearYou };

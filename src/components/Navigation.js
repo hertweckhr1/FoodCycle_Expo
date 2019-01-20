@@ -6,7 +6,9 @@ import { createSwitchNavigator,
   createAppContainer,
   createStackNavigator
 } from 'react-navigation';
-import { FindByProduct, DoneeSchedule, FindNearYou, DonationSchedule, Info, WelcomeScreen, Settings, UserDetails, AddDonation } from '../screens'
+import { DonationDetail, DonorDonationsToday,
+  FindByProduct, DoneeSchedule, FindNearYou, DonationSchedule,
+  Info, WelcomeScreen, Settings, UserDetails, AddDonation } from '../screens'
 import SignUpForm from './SignUpForm';
 import NavigationService from './NavigationService';
 
@@ -149,6 +151,12 @@ const StackNavigator = createStackNavigator({
     TabNavigator: TabNavigator,
     SignUp: {
       screen: SignUpForm,
+    },
+    DonorDonationsToday: {
+      screen: DonorDonationsToday,
+    },
+    DonationDetail: {
+      screen: DonationDetail,
     }
   },
   {
