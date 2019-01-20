@@ -52,7 +52,7 @@ class DonorDonationsToday extends Component {
                      <Text style={styles.text} note numberOfLines={1}>Pick Up: {moment(donation['pickup_starttime']).format("hh:mm a")} to {moment(donation['pickup_endtime']).format("hh:mm a")}</Text>
                    </Body>
                    <Right>
-                     <Button style={styles.button}>
+                     <Button style={styles.button} onPress={() => this.props.screenProps.updateDonationCallback(user['id'], donation['id'])}>
                        <Text style={styles.text}>Pick Up</Text>
                      </Button>
                    </Right>

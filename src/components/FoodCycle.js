@@ -77,17 +77,17 @@ class FoodCycle extends Component {
     })
   }
 
-  updateDonation = (donationInfo) => {
-    console.log('Here we go')
-    // console.log(newDonation)
-    const { id, donee } = donationInfo
-    console.log(id)
+  updateDonation = (doneeID, donationID) => {
+    console.log('About to update donation')
+    console.log(doneeID)
+    console.log(donationID)
+
     const apiPayLoad = {
-      donee, status: 'picked-up'
+      donee: doneeID, status: 'picked-up'
     };
     // console.log(apiPayLoad)
     axios
-    .patch(`http://127.0.0.1:8000/api/donation/donations/${id}/`, apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
+    .patch(`http://127.0.0.1:8000/api/donation/donations/${doneeID}/`, apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
       console.log('updated donation!');
       // console.log(response);
@@ -166,7 +166,8 @@ class FoodCycle extends Component {
       user: this.state.user,
       users: this.state.users,
       addDonationCallback: this.addDonation,
-      error: this.state.error
+      error: this.state.error,
+      updateDonationCallback: this.updateDonation
     }
     return <Navigation screenProps={screenProps}/>;
   }
