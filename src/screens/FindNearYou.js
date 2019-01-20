@@ -3,12 +3,16 @@ import { Text, View } from 'react-native';
 import { MapView } from 'expo';
 import axios from 'axios';
 
+// {this.state.markers.map((marker, index) => (
+//   <MapView.Marker
+//       key={index}
+//       coordinate={marker['marker']}
+//     />
+//   ))}
 
-
-        // {this.renderMarkers()}
 class FindNearYou extends Component {
   state = {
-    isLoading: true,
+    isLoaded: false,
     userMarker: {},
     markers: [],
   }
@@ -32,75 +36,48 @@ class FindNearYou extends Component {
     .then(response => {
       const latitude = response.data.results[0].geometry.location['lat']
       const longitude = response.data.results[0].geometry.location['lng']
-      // console.log(response.data.results[0].geometry.location['lat'])
       const { userMarker } = this.state
-      // markers.push({coordinates})
       this.setState({
-        // isLoading: false,
         userMarker: {latitude, longitude}
       })
-
-      // console.log(userMarker)
-      // console.log(markers[0].coordinates)
     })
-    .catch(error => {
+    .catch(() => {
       console.log('load marker error');
     });
   };
 
   loadDonationMarkers = async () => {
     const { donations, users } = this.props.screenProps
-    console.log(donations.length)
-    // const first_donation = donations[0];
-    await donations.map((donation) => {
-      console.log(donation['id'])
-      console.log(donation['product_type'])
-      const rightUser = users.find(user => user['id'] == donation['donee']);
+    let markers = [];
+    for(const donation of donations){
+      const rightUser = users.find(user => user['id'] == donation['user']);
       const key = 'AIzaSyA88aLue_PRkIpUxIAHFiD7e7Mg5MfXagY';
       const address = `${rightUser['street_address']} ${rightUser['city']} ${rightUser['state']} ${rightUser['zip']}`;
       const URL = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${key}`;
       const correctURL = encodeURI(URL);
 
-      axios
+      await axios
       .get(correctURL)
       .then(response => {
         const latitude = response.data.results[0].geometry.location['lat']
         const longitude = response.data.results[0].geometry.location['lng']
-        // console.log(coordinates)
-        // console.log(response.data.results[0].geometry.location['lat'])
-        const { markers } = this.state
         markers.push({latitude, longitude})
-        this.setState({
-          markers,
-        })
-        // markers.map((marker, index) => {
-        //   return (
-        //     <MapView.Marker
-        //       key={index}
-        //       coordinate={marker}
-        //     />
-        //   );
-        // });
-        // console.log(userMarker)
-        // console.log(markers[0].coordinates)
       })
-      .catch(error => {
+      .catch(() => {
         console.log('load marker error');
       });
-    })
+    }
+
     this.setState({
-      isLoading: false,
+      markers,
+      isLoaded: true,
     })
   };
 
   renderMarkers = () => {
-    console.log(this.state.markers)
-    if (this.state.isLoading) {
-      this.state.markers.map((marker, index) => {
+      return this.state.markers.map((marker, index) => {
           const coords = {marker};
-          console.log('coordinates');
-          console.log(coords['marker']);
-
+          console.log(marker['marker'])
           return (
             <MapView.Marker
               key={index}
@@ -108,12 +85,11 @@ class FindNearYou extends Component {
             />
           );
         });
-      }
   }
 
   render() {
-    console.log('Ohhhhh Yeah')
-    // console.log(this.state)
+    console.log(this.state.userMarker['latitude'])
+    console.log(this.state.userMarker['longitude'])
     return (
       <View>
         <MapView
@@ -123,8 +99,8 @@ class FindNearYou extends Component {
           initialRegion={{
             latitude: this.state.userMarker.latitude,
             longitude: this.state.userMarker.longitude,
-            latitudeDelta: 0.04,
-            longitudeDelta: 0.04,
+            latitudeDelta: 0.10,
+            longitudeDelta: 0.10,
           }}
         >
         <MapView.Marker
@@ -132,6 +108,9 @@ class FindNearYou extends Component {
           title={"My Location"}
           // description={"Bananas: 40 lb"}
         />
+
+        { this.state.isLoaded && this.renderMarkers()}
+
 
         </MapView>
       </View>
