@@ -87,12 +87,13 @@ class FoodCycle extends Component {
     };
     // console.log(apiPayLoad)
     axios
-    .patch(`http://127.0.0.1:8000/api/donation/donations/${doneeID}/`, apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
+    .patch(`http://127.0.0.1:8000/api/donation/donations/${donationID}/`, apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
       console.log('updated donation!');
-      // console.log(response);
+      console.log(response.data);
       const { donations } = this.state
-
+      let thisDonation = donations.find(donation => donation['id'] == donationID)
+      thisDonation = response.data
       this.setState({
         donations,
       })
@@ -159,6 +160,7 @@ class FoodCycle extends Component {
   }
 
   render() {
+    console.log(this.state.donations);
     const screenProps = {
       loginUserCallback: this.onLogIn,
       donations: this.state.donations,

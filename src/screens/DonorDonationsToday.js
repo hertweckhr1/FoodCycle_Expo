@@ -43,7 +43,7 @@ class DonorDonationsToday extends Component {
               <View style={styles.titleView}>
                 <H1 style={styles.headerText}>{user['company_name']} Donations Today</H1>
               </View>
-              <List dataArray={filteredDonations}
+              <List dataArray={donationsToday}
                renderRow={(donation) =>
                  <ListItem thumbnail>
 
