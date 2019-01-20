@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
 
 class DonationDetail extends Component {
   render(){
+    console.log('Here we are!')
+    // console.log(this.props)
     return(
-      <Text>Donation Detail</Text>
+      <View>
+        <Text>Donation Detail</Text>
+        <Text>{this.props.donorID}</Text>
+      </View>
     )
   }
 }

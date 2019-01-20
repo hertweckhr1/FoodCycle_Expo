@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Alert, Button, TouchableHighlight} from 'react-
 import { H1 } from 'native-base';
 import { MapView } from 'expo';
 import axios from 'axios';
+import moment from 'moment'
 
 // {this.state.markers.map((marker, index) => (
 //   <MapView.Marker
@@ -52,8 +53,14 @@ class FindNearYou extends Component {
 
   loadDonationMarkers = async () => {
     const { donations, users } = this.props.screenProps
+    console.log(donations);
+
+    const today = moment(new Date()).format("YYYY-MM-DD")
+    const donationsToday = donations.filter(donation =>
+      moment(donation['pickup_starttime']).format("YYYY-MM-DD") == today);
+    console.log(donationsToday);
     let markers = [];
-    for(const donation of donations){
+    for(const donation of donationsToday){
       const rightUser = users.find(user => user['id'] == donation['user']);
       const key = 'AIzaSyA88aLue_PRkIpUxIAHFiD7e7Mg5MfXagY';
       const address = `${rightUser['street_address']} ${rightUser['city']} ${rightUser['state']} ${rightUser['zip']}`;
@@ -68,7 +75,7 @@ class FindNearYou extends Component {
         const coordinates = { marker: {latitude, longitude},
           donorName: rightUser['company_name'], donorStreetAddress: rightUser['street_address'],
           donorID: rightUser['id']}
-        console.log(coordinates['coordinates'])
+        // console.log(coordinates['coordinates'])
         markers.push(coordinates)
       })
       .catch(() => {
@@ -80,7 +87,7 @@ class FindNearYou extends Component {
       markers,
       isLoaded: true,
     })
-    console.log(markers)
+    // console.log(markers)
   };
 
   renderMarkers = () => {
@@ -100,12 +107,12 @@ class FindNearYou extends Component {
   onMarkerPress= (donorID) => {
     console.log('MARKER WAS CLICKED!')
     console.log(donorID)
-    this.props.navigation.navigate('DonorDonationsToday');
+    this.props.navigation.navigate('DonorDonationsToday', {donorID: donorID});
   }
 
   render() {
-    console.log(this.state.userMarker['latitude'])
-    console.log(this.state.userMarker['longitude'])
+    // console.log(this.state.userMarker['latitude'])
+    // console.log(this.state.userMarker['longitude'])
     return (
       <View>
         <View style={styles.titleView}>
