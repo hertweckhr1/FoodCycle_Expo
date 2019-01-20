@@ -14,6 +14,9 @@ class DonorDonationsToday extends Component {
     const today = moment(new Date()).format("YYYY-MM-DD")
     const donationsToday = filteredDonations.filter(donation =>
       moment(donation['pickup_starttime']).format("YYYY-MM-DD") == today);
+    const donationsAvailableToday = donationsToday.filter(donation =>
+      donation['status'] == 'posted')
+
 
     const thisUser = (id) => {
       if (id == null) {
@@ -24,14 +27,14 @@ class DonorDonationsToday extends Component {
       }
     }
 
-    if (donationsToday.length == 0) {
+    if (donationsAvailableToday.length == 0) {
       return (
         <Container>
           <View style={styles.titleView}>
             <H1 style={styles.headerText}>{user['company_name']} Donations</H1>
           </View>
           <View>
-            <Text style={styles.noticeText}>You have no donations logged yet</Text>
+            <Text style={styles.noticeText}>There are currently no available donations at this location.</Text>
           </View>
         </Container>
       )
@@ -43,7 +46,7 @@ class DonorDonationsToday extends Component {
               <View style={styles.titleView}>
                 <H1 style={styles.headerText}>{user['company_name']} Donations Today</H1>
               </View>
-              <List dataArray={donationsToday}
+              <List dataArray={donationsAvailableToday}
                renderRow={(donation) =>
                  <ListItem thumbnail>
 

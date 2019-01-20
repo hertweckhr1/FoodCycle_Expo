@@ -60,8 +60,13 @@ class FindNearYou extends Component {
     const donationsToday = donations.filter(donation =>
       moment(donation['pickup_starttime']).format("YYYY-MM-DD") == today);
     console.log(donationsToday);
+
+    const donationsAvailableToday = donationsToday.filter(donation =>
+      donation['status'] == 'posted')
+
+
     let markers = [];
-    for(const donation of donationsToday){
+    for(const donation of donationsAvailableToday){
       const rightUser = users.find(user => user['id'] == donation['user']);
       const key = 'AIzaSyA88aLue_PRkIpUxIAHFiD7e7Mg5MfXagY';
       const address = `${rightUser['street_address']} ${rightUser['city']} ${rightUser['state']} ${rightUser['zip']}`;
