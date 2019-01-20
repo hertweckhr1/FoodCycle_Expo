@@ -92,7 +92,6 @@ class FoodCycle extends Component {
       console.log('updated donation!');
       // console.log(response);
       const { donations } = this.state
-      donations.push(response.data);
 
       this.setState({
         donations,

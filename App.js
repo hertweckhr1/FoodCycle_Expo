@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import FoodCycle from './src/components/FoodCycle'
 
 
+
 export default class App extends React.Component {
   render() {
     return <FoodCycle />;
