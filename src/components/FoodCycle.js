@@ -91,11 +91,19 @@ class FoodCycle extends Component {
     .then(response => {
       console.log('updated donation!');
       console.log(response.data);
-      const { donations } = this.state
-      let thisDonation = donations.find(donation => donation['id'] == donationID)
-      thisDonation = response.data
+      const donationList = [...this.state.donations]
+      // let thisDonation = donationList.find(donation => donation['id'] == donationID)
+
+      donationList.forEach(donation => {
+        if (donation['id'] == donationID) {
+          donation['donee'] = doneeID;
+          donation['status'] = 'picked-up'
+        }
+      });
+
+      console.log(donationList)
       this.setState({
-        donations,
+        donations: donationList
       })
       NavigationService.navigate('DoneeSchedule');
 
