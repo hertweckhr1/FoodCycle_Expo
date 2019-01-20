@@ -53,7 +53,7 @@ class AddDonation extends Component {
     event.preventDefault();
     // const { text, emoji } = this.state;
 
-    console.log(event);
+    // console.log(event);
     this.props.screenProps.addDonationCallback(this.state);
     this.setState({
       productType: '',
@@ -92,8 +92,8 @@ class AddDonation extends Component {
   }
 
   render() {
-    console.log(this.props.screenProps)
-    console.log(this.state)
+    // console.log(this.props.screenProps)
+    // console.log(this.state)
     return (
       <ScrollView>
         <View style={styles.container}>

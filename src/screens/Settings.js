@@ -5,8 +5,8 @@ import NavigationService from '../components/NavigationService';
 
 class Settings extends React.Component {
   render() {
-    console.log(JSON.stringify({test: true, props: this.props}, null, 2))
-    console.log(this.props.screenProps.user)
+    // console.log(JSON.stringify({test: true, props: this.props}, null, 2))
+    // console.log(this.props.screenProps.user)
     const user = this.props.screenProps.user
     return (
       <ScrollView>

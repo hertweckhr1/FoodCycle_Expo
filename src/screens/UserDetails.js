@@ -10,7 +10,7 @@ class UserDetails extends React.Component {
     const { user, donations, users } = this.props.screenProps
     const filteredDonations = donations.filter(donation => donation['user'] === user['id']);
     const today = moment(new Date()).format("YYYY-MM-DD")
-    console.log(today)
+    // console.log(today)
     const donationsToday = filteredDonations.filter(donation =>
       moment(donation['pickup_starttime']).format("YYYY-MM-DD") == today);
     const pickedupDonations = donationsToday.filter(donation => donation['status'] == 'picked-up')

@@ -15,7 +15,7 @@ import NavigationService from './NavigationService';
 class Navigation extends Component {
 
   render() {
-    console.log(JSON.stringify({test: true, props: this.props}, null, 2))
+    // console.log(JSON.stringify({test: true, props: this.props}, null, 2))
     const screenProps = {
       loginUserCallback: this.props.screenProps.loginUserCallback,
       donations: this.props.screenProps.donations,
@@ -50,6 +50,10 @@ const AddDonationTabBarIcon = ({ tintColor }) => (
 const SettingsTabBarIcon = ({ tintColor }) => (
   <Icon name="construct" size={20} color={tintColor} />
 );
+const SearchTabBarIcon = ({ tintColor }) => (
+  <Icon name="search" size={20} color={tintColor} />
+);
+
 
 // donortab
 const TabNavigator = createBottomTabNavigator({
@@ -109,7 +113,7 @@ const DoneeTabNavigator = createBottomTabNavigator({
       screen: FindByProduct,
       navigationOptions: {
         title: 'By Product',
-        tabBarIcon: AddDonationTabBarIcon
+        tabBarIcon: SearchTabBarIcon
       }
     },
     Info: {

@@ -16,7 +16,6 @@ class FoodCycle extends Component {
     await axios
     .get(userURL, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
-      console.log('Loaded Users');
       const userList = response.data.map(user => {
         return user;
       })
@@ -26,7 +25,6 @@ class FoodCycle extends Component {
     })
     .catch(error => {
       console.log('users load error');
-      console.log(error);
     });
   };
 
@@ -44,14 +42,13 @@ class FoodCycle extends Component {
       });
     })
     .catch(error => {
-      console.log(error);
       console.log('donation load error');
     });
   };
 
   addDonation = (newDonation) => {
     console.log('Here we go')
-    console.log(newDonation)
+    // console.log(newDonation)
     const {productType, productDescription, measurement, quantity, pickupDetails, pickupEndTime, pickupStartTime } = newDonation
     console.log(newDonation['productType'])
     const apiPayLoad = {
@@ -59,12 +56,12 @@ class FoodCycle extends Component {
       product_measurement: measurement, quantity: quantity, pickup_details: pickupDetails,
       pickup_starttime: pickupStartTime, pickup_endtime: pickupEndTime
     };
-    console.log(apiPayLoad)
+    // console.log(apiPayLoad)
     axios
     .post('http://127.0.0.1:8000/api/donation/donations/', apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
       console.log('added donation!');
-      console.log(response);
+      // console.log(response);
       const { donations } = this.state
       donations.push(response.data);
 
@@ -76,7 +73,7 @@ class FoodCycle extends Component {
     })
     .catch((error) => {
       console.log('donation adding error')
-      console.log(error);
+      // console.log(error);
     })
   }
 
@@ -90,7 +87,7 @@ class FoodCycle extends Component {
 
   onLogIn = (email, password) => {
     console.log('Button Pressed!');
-    console.log(email)
+    // console.log(email)
     // const { , password } = this.state
     const url = `http://127.0.0.1:8000/api/user/token/`;
     const userURL = `http://127.0.0.1:8000/api/user/me/`
@@ -98,11 +95,11 @@ class FoodCycle extends Component {
       .post(url, {email, password})
       .then(response => {
         console.log('API login success!');
-        console.log("Token " + response.data['token'])
+        // console.log("Token " + response.data['token'])
         this.setState({
           token: response.data['token']
         })
-        console.log(this.state.token)
+        // console.log(this.state.token)
         axios
           .get(userURL, { headers: { Authorization: "Token " + this.state.token}})
           .then(async (response) => {
@@ -126,7 +123,7 @@ class FoodCycle extends Component {
           });
       })
       .catch(error => {
-        console.log(error.response.data.errors);
+        // console.log(error.response.data.errors);
         this.setState({
           error: 'Incorrect username or password. Please try again.',
         });
