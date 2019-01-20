@@ -8,14 +8,10 @@ class DonorDonationsToday extends Component {
   render() {
     const { navigation } = this.props;
     const donorID = navigation.getParam('donorID', 'NO-ID');
-    console.log(this.props)
-    console.log(donorID)
-
 
     const { user, donations, users } = this.props.screenProps
     const filteredDonations = donations.filter(donation => donation['user'] === donorID)
     const today = moment(new Date()).format("YYYY-MM-DD")
-    // console.log(today)
     const donationsToday = filteredDonations.filter(donation =>
       moment(donation['pickup_starttime']).format("YYYY-MM-DD") == today);
 
@@ -45,21 +41,19 @@ class DonorDonationsToday extends Component {
           <Container>
             <Content>
               <View style={styles.titleView}>
-                <H1 style={styles.headerText}>{user['company_name']} Donations</H1>
+                <H1 style={styles.headerText}>{user['company_name']} Donations Today</H1>
               </View>
               <List dataArray={filteredDonations}
                renderRow={(donation) =>
                  <ListItem thumbnail>
-                   <Left>
-                     <Text>{moment(donation['pickup_starttime']).format("MMM Do")}</Text>
-                   </Left>
+
                    <Body>
-                     <Text>{donation['product_type']}: {donation['product_description']}</Text>
-                     <Text note numberOfLines={1}>Donee: {thisUser(donation['donee'])}</Text>
+                     <Text style={styles.text}>{donation['product_type']}: {donation['product_description']}</Text>
+                     <Text style={styles.text} note numberOfLines={1}>Pick Up: {moment(donation['pickup_starttime']).format("hh:mm a")} to {moment(donation['pickup_endtime']).format("hh:mm a")}</Text>
                    </Body>
                    <Right>
-                     <Button transparent>
-                       <Text>{donation['status']}</Text>
+                     <Button style={styles.button}>
+                       <Text style={styles.text}>Pick Up</Text>
                      </Button>
                    </Right>
                  </ListItem>
@@ -92,6 +86,16 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 10,
     color: '#FF4500',
+  },
+  button: {
+    backgroundColor: 'tomato'
+  },
+  text: {
+    fontFamily: 'Futura',
+  },
+  buttonText: {
+    fontFamily: 'Futura',
+    color: 'white',
   }
 
 })

@@ -77,6 +77,35 @@ class FoodCycle extends Component {
     })
   }
 
+  updateDonation = (donationInfo) => {
+    console.log('Here we go')
+    // console.log(newDonation)
+    const { id, donee } = donationInfo
+    console.log(id)
+    const apiPayLoad = {
+      donee, status: 'picked-up'
+    };
+    // console.log(apiPayLoad)
+    axios
+    .patch(`http://127.0.0.1:8000/api/donation/donations/${id}/`, apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
+    .then(response => {
+      console.log('updated donation!');
+      // console.log(response);
+      const { donations } = this.state
+      donations.push(response.data);
+
+      this.setState({
+        donations,
+      })
+      NavigationService.navigate('DoneeSchedule');
+
+    })
+    .catch((error) => {
+      console.log('donation updating error')
+      // console.log(error);
+    })
+  }
+
   decideUser = () => {
     if (this.state.user['is_doner']) {
       NavigationService.navigate('Dashboard', { user: this.state.user });

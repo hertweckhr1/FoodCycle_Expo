@@ -118,9 +118,6 @@ class FindNearYou extends Component {
         <View style={styles.titleView}>
           <H1 style={styles.headerText}>Find Donations By Map</H1>
           <Text style={styles.mapText}>Select donor location marker for specific donations offered today</Text>
-          <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('SignUp')}>
-              <Text>Register</Text>
-          </TouchableHighlight>
         </View>
         <MapView
           style={{ width: 400, height: 600 }}
