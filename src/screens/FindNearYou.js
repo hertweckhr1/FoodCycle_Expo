@@ -5,13 +5,9 @@ import { MapView } from 'expo';
 import axios from 'axios';
 import moment from 'moment'
 
-
-// {this.state.markers.map((marker, index) => (
-//   <MapView.Marker
-//       key={index}
-//       coordinate={marker['marker']}
-//     />
-//   ))}
+ // FOR USER MARKER BUT NO CURRENTLY WORKING WITH DEPLOYED BACKEND
+// latitude: this.state.userMarker.latitude,
+// longitude: this.state.userMarker.longitude,
 
 // ISSUE WITH ONPRESS FOR MARKERS:
 // https://github.com/react-native-community/react-native-maps/issues/1132
@@ -130,10 +126,10 @@ class FindNearYou extends Component {
           provider="google"
           showsUserLocation={true}
           initialRegion={{
-            latitude: this.state.userMarker.latitude,
-            longitude: this.state.userMarker.longitude,
-            latitudeDelta: 0.10,
-            longitudeDelta: 0.10,
+            latitude: 47.6062,
+            longitude: -122.3321,
+            latitudeDelta: 0.15,
+            longitudeDelta: 0.15,
           }}
         >
         <MapView.Marker

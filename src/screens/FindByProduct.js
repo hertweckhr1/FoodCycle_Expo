@@ -41,19 +41,28 @@ class FindByProduct extends Component {
             <Content>
               <View style={styles.titleView}>
                 <H1 style={styles.headerText}>Donations Available Today</H1>
+                <Text note style={styles.subTitle}>Total Donations: {donationsAvailableToday.length}</Text>
               </View>
               <List dataArray={donationsAvailableToday}
                renderRow={(donation) =>
                  <ListItem thumbnail>
 
                    <Body>
-                     <Text style={styles.text}>{donation['product_type']}: {donation['product_description']}</Text>
+                     <Text style={styles.text}>{donation['product_description']}</Text>
+                     <Text note style={styles.text}>Type: {donation['product_type']}</Text>
                      <Text style={styles.text} note numberOfLines={1}>Pick Up: {moment(donation['pickup_starttime']).format("hh:mm a")} to {moment(donation['pickup_endtime']).format("hh:mm a")}</Text>
                    </Body>
                    <Right>
-                     <Button style={styles.button} onPress={() => this.props.screenProps.updateDonationCallback(user['id'], donation['id'])}>
-                       <Text style={styles.text}>Pick Up</Text>
-                     </Button>
+                     <View style={{flexDirection: 'column'}}>
+                       <Button style={styles.button}
+                         onPress={() => this.props.screenProps.updateDonationCallback(user['id'], donation['id'])}>
+                         <Text style={styles.buttonText}>Pick Up</Text>
+                       </Button>
+                       <Button style={styles.button}
+                         onPress={() => this.props.navigation.navigate('DonationDetail', {donationID: donation['id']})}>
+                         <Text style={styles.buttonText}>See Details</Text>
+                       </Button>
+                     </View>
                    </Right>
                  </ListItem>
                }>
@@ -87,7 +96,9 @@ const styles = StyleSheet.create({
     color: '#FF4500',
   },
   button: {
-    backgroundColor: 'tomato'
+    backgroundColor: 'tomato',
+    marginBottom: 7,
+    justifyContent: 'center'
   },
   text: {
     fontFamily: 'Futura',
@@ -95,6 +106,11 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: 'Futura',
     color: 'white',
+    fontSize: 12,
+  },
+  subTitle: {
+    fontFamily: 'Futura',
+    textAlign: 'center',
   }
 
 })

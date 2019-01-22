@@ -4,11 +4,15 @@ import { View, Text } from 'react-native';
 class DonationDetail extends Component {
   render(){
     console.log('Here we are!')
+
+    const { navigation } = this.props;
+    const donationID = navigation.getParam('donationID');
+
     // console.log(this.props)
     return(
       <View>
         <Text>Donation Detail</Text>
-        <Text>{this.props.donorID}</Text>
+        <Text>{donationID}</Text>
       </View>
     )
   }
