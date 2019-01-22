@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import { Text, View, Image } from 'react-native';
 import { Icon } from 'native-base'
-import { createSwitchNavigator,
+import { HeaderBackButton, createSwitchNavigator,
   createBottomTabNavigator,
   createAppContainer,
   createStackNavigator
 } from 'react-navigation';
-import { DonationDetail, DonorDonationsToday,
+import { DonorDonationDetail, DoneeDonationDetail, DonorDonationsToday,
   FindByProduct, DoneeSchedule, FindNearYou, DonationSchedule,
   Info, WelcomeScreen, Settings, UserDetails, AddDonation } from '../screens'
 import SignUpForm from './SignUpForm';
@@ -152,12 +152,27 @@ const StackNavigator = createStackNavigator({
     TabNavigator: TabNavigator,
     SignUp: {
       screen: SignUpForm,
+      navigationOptions: ({navigation}) => ({ //don't forget parentheses around the object notation
+        title: 'SignUp',
+        headerLeft: <HeaderBackButton onPress={() => navigation.navigate('Welcome')} />
+      })
     },
     DonorDonationsToday: {
       screen: DonorDonationsToday,
+      navigationOptions: ({navigation}) => ({ //don't forget parentheses around the object notation
+        title: 'SignUp',
+        headerLeft: <HeaderBackButton onPress={() => navigation.navigate('FindNearYou')} />
+      })
     },
-    DonationDetail: {
-      screen: DonationDetail,
+    DoneeDonationDetail: {
+      screen: DoneeDonationDetail,
+      navigationOptions: ({navigation}) => ({ //don't forget parentheses around the object notation
+        title: 'SignUp',
+        headerLeft: <HeaderBackButton onPress={() => navigation.navigate('FindByProduct')} />
+      })
+    },
+    DonorDonationDetail: {
+      screen: DonorDonationDetail,
     }
   },
   {

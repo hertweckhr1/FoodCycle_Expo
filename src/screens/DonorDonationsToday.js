@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native' ;
-import { H1, H5, Container, Button, Thumbnail, Body, Left, Right, Content, List, ListItem, Text } from 'native-base';
+import { H1, Container, Button, Thumbnail, Body, Left, Right, Content, List, ListItem, Text } from 'native-base';
 import moment from "moment";
 
-
 class DonorDonationsToday extends Component {
+
   render() {
     const { navigation } = this.props;
     const donorID = navigation.getParam('donorID', 'NO-ID');
@@ -63,7 +63,7 @@ class DonorDonationsToday extends Component {
                          <Text style={styles.buttonText}>Pick Up</Text>
                        </Button>
                        <Button style={styles.button}
-                         onPress={() => this.props.navigation.navigate('DonationDetail', {donationID: donation['id']})}>
+                         onPress={() => this.props.navigation.navigate('DoneeDonationDetail', {donationID: donation['id']})}>
                          <Text style={styles.buttonText}>See Details</Text>
                        </Button>
                      </View>

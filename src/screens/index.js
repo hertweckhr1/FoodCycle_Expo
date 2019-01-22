@@ -7,5 +7,6 @@ export * from './DonationSchedule';
 export * from './FindByProduct';
 export * from './FindNearYou';
 export * from './DoneeSchedule';
-export * from './DonationDetail';
+export * from './DonorDonationDetail';
+export * from './DoneeDonationDetail';
 export * from './DonorDonationsToday';

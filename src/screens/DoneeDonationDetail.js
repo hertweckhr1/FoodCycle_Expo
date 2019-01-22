@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { H1, Button, Container } from 'native-base';
 import moment from 'moment';
 
-class DonationDetail extends Component {
+class DoneeDonationDetail extends Component {
 
   render(){
     console.log('Here we are!')
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export { DonationDetail };
+export { DoneeDonationDetail };

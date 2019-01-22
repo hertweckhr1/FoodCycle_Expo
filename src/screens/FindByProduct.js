@@ -59,7 +59,7 @@ class FindByProduct extends Component {
                          <Text style={styles.buttonText}>Pick Up</Text>
                        </Button>
                        <Button style={styles.button}
-                         onPress={() => this.props.navigation.navigate('DonationDetail', {donationID: donation['id']})}>
+                         onPress={() => this.props.navigation.navigate('DoneeDonationDetail', {donationID: donation['id']})}>
                          <Text style={styles.buttonText}>See Details</Text>
                        </Button>
                      </View>
