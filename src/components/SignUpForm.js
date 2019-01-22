@@ -37,7 +37,7 @@ class SignUpForm extends Component {
     console.log('Button Pressed!')
     const { email, password, isDoner, pointOfContact, companyName,
       streetAddress, streetAddress2, city, state, zip } = this.state
-    const url = `http://127.0.0.1:8000/api/user/create/`;
+    const url = `http://104.199.122.67:8000/api/user/create/`;
     axios
       .post(url, {email, password, is_doner: isDoner,
         point_of_contact: pointOfContact, company_name: companyName,

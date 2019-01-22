@@ -1,6 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, TouchableHighlight } from 'react-native'
-import { Container, Left, Right, Content, ListItem, Text, Separator } from 'native-base';
+import { ScrollView, View, StyleSheet, TouchableHighlight } from 'react-native'
+import { Container, Left, Button, Right, Content, ListItem, Text, Separator } from 'native-base';
 import NavigationService from '../components/NavigationService';
 
 class Settings extends React.Component {
@@ -94,16 +94,18 @@ class Settings extends React.Component {
               <Text>PASSWORD</Text>
             </Separator>
             <ListItem>
-              <Text style={styles.passwordText}>Change Password</Text>
+              <Button style={{backgroundColor: 'black', height: 35}}>
+                  <Text style={{fontFamily: 'Futura', color: 'white'}}>Change Password</Text>
+              </Button>
             </ListItem>
             <Separator bordered>
               <Text>LOGOUT</Text>
             </Separator>
             <ListItem>
-              <TouchableHighlight style={styles.buttonContainer}
-                onPress={() => NavigationService.navigate('Home')}>
-                  <Text>Logout</Text>
-              </TouchableHighlight>
+              <Button style={{backgroundColor: 'black', height: 35}}
+                onPress={() => this.props.navigation.navigate('Welcome')}>
+                  <Text style={{fontFamily: 'Futura', color: 'white'}}>Logout</Text>
+              </Button>
             </ListItem>
           </Content>
         </Container>
@@ -119,22 +121,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   personalText: {
-    fontFamily: 'Futura'
-  },
-  passwordText: {
-    color: 'blue',
-    textDecorationLine: 'underline',
     fontFamily: 'Futura',
+    textAlign: 'right',
   },
-  buttonContainer: {
-    height:45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
-  },
+
 })
 
 export { Settings };

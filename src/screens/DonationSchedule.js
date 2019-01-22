@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native' ;
-import { H1, Container, Button, Thumbnail, Body, Left, Right, Content, List, ListItem, Text } from 'native-base';
+import { H1, Container, Button, Badge, Thumbnail, Body, Left, Right, Content, List, ListItem, Text } from 'native-base';
 import moment from "moment";
 
 class DonationSchedule extends Component {
@@ -40,17 +40,32 @@ class DonationSchedule extends Component {
                renderRow={(donation) =>
                  <ListItem thumbnail>
                    <Left>
-                     <Text>{moment(donation['pickup_starttime']).format("MMM Do")}</Text>
+                     <Text style={styles.dateText}>{moment(donation['pickup_starttime']).format("MMM Do")}</Text>
                    </Left>
                    <Body>
-                     <Text>{donation['product_type']}: {donation['product_description']}</Text>
+                     <View style={styles.topLine}>
+                       <Text>{donation['product_description']}</Text>
+
+                       <Badge style={{backgroundColor: 'black'}}>
+                         <Text style={{fontFamily: 'Futura'}}>{donation['status']}</Text>
+                       </Badge>
+                     </View>
+                     <Text note>Type: {donation['product_type']} </Text>
+
                      <Text note numberOfLines={1}>Donee: {thisUser(donation['donee'])}</Text>
+                     <View style={styles.donationButtonList}>
+                       <Button style={styles.detailButton}>
+                         <Text style={styles.buttonText}>Details</Text>
+                       </Button>
+                       <Button style={styles.detailButton} >
+                         <Text style={styles.buttonText}>Edit</Text>
+                       </Button>
+                       <Button style={styles.detailButton} >
+                         <Text style={styles.buttonText}>Delete</Text>
+                       </Button>
+                     </View>
+
                    </Body>
-                   <Right>
-                     <Button transparent>
-                       <Text>{donation['status']}</Text>
-                     </Button>
-                   </Right>
                  </ListItem>
                }>
               </List>
@@ -81,8 +96,37 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 10,
     color: '#FF4500',
-  }
+  },
+  detailButton: {
+    backgroundColor: 'tomato',
+    color: 'white',
+    height: 25,
+    width: 80,
+    marginRight: 7,
+    justifyContent: 'center',
+  },
+  donationButtonList: {
+    flexDirection: 'row',
+    marginTop: 5,
+  },
+  buttonText: {
+    fontFamily: 'Futura',
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  topLine: {
+    flexDirection: 'row',
+  },
+  dateText: {
+    fontFamily: 'Futura',
+    fontWeight: 'bold',
+    textAlignVertical: 'top',
+  },
+  badge: {
+    backgroundColor: 'black',
+    fontFamily: 'Futura',
 
+  }
 })
 
 export { DonationSchedule }

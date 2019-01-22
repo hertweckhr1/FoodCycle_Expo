@@ -12,7 +12,7 @@ class FoodCycle extends Component {
   }
 
   loadUsers = async () => {
-    const userURL = 'http://127.0.0.1:8000/api/user/donee-info/'
+    const userURL = 'http://104.199.122.67:8000/api/user/donee-info/'
     await axios
     .get(userURL, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
@@ -29,7 +29,7 @@ class FoodCycle extends Component {
   };
 
   loadDonations = async () => {
-    const donationURL = 'http://127.0.0.1:8000/api/donation/donations/'
+    const donationURL = 'http://104.199.122.67:8000/api/donation/donations/'
     await axios
     .get(donationURL, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
@@ -58,7 +58,7 @@ class FoodCycle extends Component {
     };
     // console.log(apiPayLoad)
     axios
-    .post('http://127.0.0.1:8000/api/donation/donations/', apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
+    .post('http://104.199.122.67:8000/api/donation/donations/', apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
       console.log('added donation!');
       // console.log(response);
@@ -87,7 +87,7 @@ class FoodCycle extends Component {
     };
     // console.log(apiPayLoad)
     axios
-    .patch(`http://127.0.0.1:8000/api/donation/donations/${donationID}/`, apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
+    .patch(`http://104.199.122.67:8000/api/donation/donations/${donationID}/`, apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
       console.log('updated donation!');
       console.log(response.data);
@@ -126,8 +126,8 @@ class FoodCycle extends Component {
     console.log('Button Pressed!');
     // console.log(email)
     // const { , password } = this.state
-    const url = `http://127.0.0.1:8000/api/user/token/`;
-    const userURL = `http://127.0.0.1:8000/api/user/me/`
+    const url = `http://104.199.122.67:8000/api/user/token/`;
+    const userURL = `http://104.199.122.67:8000/api/user/me/`
     axios
       .post(url, {email, password})
       .then(response => {
