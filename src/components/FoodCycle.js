@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navigation from './Navigation';
 import NavigationService from './NavigationService'
 
+
 class FoodCycle extends Component {
   state = {
     user: {},
@@ -114,6 +115,38 @@ class FoodCycle extends Component {
     })
   }
 
+  deleteDonation = (donationID) => {
+    console.log('About to delete donation')
+    console.log(donationID)
+
+    axios
+    .delete(`http://104.199.122.67:8000/api/donation/donations/${donationID}/`, { headers: { Authorization: "Token " + this.state.token}})
+    .then(response => {
+      console.log('updated donation!');
+      const donationList = [...this.state.donations]
+      let deleteIndex = -1;
+      console.log(donationList)
+
+      donationList.forEach((donation, index) => {
+        if (donation['id'] == donationID) {
+          deleteIndex = index
+        }
+      });
+
+      donationList.splice(deleteIndex, 1)
+
+      this.setState({
+        donations: donationList
+      })
+      NavigationService.navigate('DonationSchedule');
+
+    })
+    .catch((error) => {
+      console.log('donation updating error')
+      console.log(error);
+    })
+  }
+
   decideUser = () => {
     if (this.state.user['is_doner']) {
       NavigationService.navigate('Dashboard', { user: this.state.user });
@@ -176,7 +209,8 @@ class FoodCycle extends Component {
       users: this.state.users,
       addDonationCallback: this.addDonation,
       error: this.state.error,
-      updateDonationCallback: this.updateDonation
+      updateDonationCallback: this.updateDonation,
+      deleteDonationCallback: this.deleteDonation
     }
     return <Navigation screenProps={screenProps}/>;
   }

@@ -47,7 +47,7 @@ class DonationSchedule extends Component {
                        <Text style={styles.text}>{donation['product_description']}</Text>
 
                        <Badge style={{backgroundColor: 'black'}}>
-                         <Text style={{fontFamily: 'Futura'}}>{donation['status']}</Text>
+                         <Text style={{fontFamily: 'Futura', fontSize: 12}}>{donation['status']}</Text>
                        </Badge>
                      </View>
                      <Text note>Type: {donation['product_type']} </Text>
@@ -61,7 +61,8 @@ class DonationSchedule extends Component {
                        <Button style={styles.detailButton} >
                          <Text style={styles.buttonText}>Edit</Text>
                        </Button>
-                       <Button style={styles.detailButton} >
+                       <Button style={styles.detailButton}
+                          onPress={() => this.props.screenProps.deleteDonationCallback(donation['id'])}>
                          <Text style={styles.buttonText}>Delete</Text>
                        </Button>
                      </View>
