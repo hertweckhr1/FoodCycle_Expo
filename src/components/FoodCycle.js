@@ -47,9 +47,11 @@ class FoodCycle extends Component {
     });
   };
 
-  addDonation = (newDonation) => {
+  addDonation = async (newDonation) => {
     console.log('Here we go')
+    console.log("1");
     // console.log(newDonation)
+
     const {productType, productDescription, measurement, quantity, pickupDetails, pickupEndTime, pickupStartTime } = newDonation
     console.log(newDonation['productType'])
     const apiPayLoad = {
@@ -58,9 +60,10 @@ class FoodCycle extends Component {
       pickup_starttime: pickupStartTime, pickup_endtime: pickupEndTime
     };
     // console.log(apiPayLoad)
-    axios
+    await axios
     .post('http://104.199.122.67:8000/api/donation/donations/', apiPayLoad, { headers: { Authorization: "Token " + this.state.token}})
     .then(response => {
+      console.log("2");
       console.log('added donation!');
       // console.log(response);
       const { donations } = this.state
@@ -74,7 +77,7 @@ class FoodCycle extends Component {
     })
     .catch((error) => {
       console.log('donation adding error')
-      // console.log(error);
+      console.log(error);
     })
   }
 

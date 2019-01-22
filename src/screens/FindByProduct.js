@@ -27,7 +27,7 @@ class FindByProduct extends Component {
       return (
         <Container>
           <View style={styles.titleView}>
-            <H1 style={styles.headerText}>{user['company_name']} Donations</H1>
+            <H1 style={styles.headerText}>Donations Available Today</H1>
           </View>
           <View>
             <Text style={styles.noticeText}>There are currently no available donations at this location.</Text>
@@ -50,6 +50,7 @@ class FindByProduct extends Component {
                    <Body>
                      <Text style={styles.text}>{donation['product_description']}</Text>
                      <Text note style={styles.text}>Type: {donation['product_type']}</Text>
+                     <Text note style={styles.text}>Donor: {thisUser(donation['user'])}</Text>
                      <Text style={styles.text} note numberOfLines={1}>Pick Up: {moment(donation['pickup_starttime']).format("hh:mm a")} to {moment(donation['pickup_endtime']).format("hh:mm a")}</Text>
                    </Body>
                    <Right>

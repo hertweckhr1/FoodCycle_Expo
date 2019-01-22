@@ -49,12 +49,7 @@ class AddDonation extends Component {
 
   };
 
-  onSubmit = (event) => {
-    event.preventDefault();
-    // const { text, emoji } = this.state;
-
-    // console.log(event);
-    this.props.screenProps.addDonationCallback(this.state);
+  resetState = () => {
     this.setState({
       productType: '',
       productDescription: '',
@@ -67,9 +62,20 @@ class AddDonation extends Component {
       isStartTimePickerVisible: false,
       isEndTimePickerVisible: false,
       productOptions: ["Meat or Fish", "Produce", "Dairy", "Beverages",
-        "Chilled or Frozen", "Shelf Stable"],
-      measurementOptions: ["lb", "crates", "liters", "gallons", "bags", "pieces"],
+        "Chilled or Frozen", "Shelf Stable", ""],
+      measurementOptions: ["lb", "crates", "liters", "gallons", "bags", "pieces", ""],
     });
+  }
+
+  onSubmit = async (event) => {
+    event.preventDefault();
+
+    await this.props.screenProps.addDonationCallback(this.state);
+    console.log("3");
+    await this.resetState();
+    console.log(this.state);
+    console.log("4");
+
   }
 
   showStartTimePicker = () => this.setState({ isStartTimePickerVisible: true });
@@ -92,8 +98,6 @@ class AddDonation extends Component {
   }
 
   render() {
-    // console.log(this.props.screenProps)
-    // console.log(this.state)
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -107,6 +111,7 @@ class AddDonation extends Component {
                 width:130, textAlign: 'center', fontFamily: 'Futura'}}
               dropdownTextHighlightStyle={{backgroundColor: 'tomato'}}
               options={this.state.productOptions}
+              value={this.state.productOptions}
               onSelect={ value => this.setState({ productType: (String(this.state.productOptions[value]) )})}
             />
           </View>
@@ -116,6 +121,7 @@ class AddDonation extends Component {
             <TextInput style={styles.inputs}
                 placeholder="Product Description"
                 underlineColorAndroid='transparent'
+                value={this.state.productDescription}
                 onChangeText={ productDescription => this.setState({ productDescription })}/>
           </View>
 
@@ -127,6 +133,7 @@ class AddDonation extends Component {
               dropdownTextStyle={{color: 'black', backgroundColor: '#9ACD32',
                 width:80, textAlign: 'center', fontFamily: 'Futura'}}
               dropdownTextHighlightStyle={{backgroundColor: 'tomato'}}
+              value={this.state.measurement}
               onSelect={ value => this.setState({ measurement: (String(this.state.measurementOptions[value]) )})}
               options={this.state.measurementOptions}
             />
@@ -137,6 +144,7 @@ class AddDonation extends Component {
             <TextInput style={styles.inputs}
                 placeholder="Quantity"
                 underlineColorAndroid='transparent'
+                value={this.state.quantity}
                 onChangeText={quantity => this.setState({ quantity })}/>
           </View>
 
@@ -145,6 +153,7 @@ class AddDonation extends Component {
             <TextInput style={styles.inputs}
                 placeholder="Pick Up Details"
                 underlineColorAndroid='transparent'
+                value={this.state.pickupDetails}
                 onChangeText={pickupDetails => this.setState({ pickupDetails })}/>
           </View>
           <View style={styles.outsideDateContainer}>

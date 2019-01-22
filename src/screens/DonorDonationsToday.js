@@ -31,7 +31,7 @@ class DonorDonationsToday extends Component {
       return (
         <Container>
           <View style={styles.titleView}>
-            <H1 style={styles.headerText}>{user['company_name']} Donations</H1>
+            <H1 style={styles.headerText}>{thisUser(donorID)} Donations</H1>
           </View>
           <View>
             <Text style={styles.noticeText}>There are currently no available donations at this location.</Text>
@@ -44,7 +44,7 @@ class DonorDonationsToday extends Component {
           <Container>
             <Content>
               <View style={styles.titleView}>
-                <H1 style={styles.headerText}>{user['company_name']} Donations Today</H1>
+                <H1 style={styles.headerText}>{thisUser(donorID)} Donations Today</H1>
                 <Text note style={styles.subTitle}>Donations in List: {donationsAvailableToday.length}</Text>
               </View>
               <List dataArray={donationsAvailableToday}
