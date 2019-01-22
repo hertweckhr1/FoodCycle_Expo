@@ -40,15 +40,16 @@ class DoneeSchedule extends Component {
                renderRow={(donation) =>
                  <ListItem thumbnail>
                    <Left>
-                     <Text>{moment(donation['pickup_starttime']).format("MMM Do")}</Text>
+                     <Text style={styles.dateText}>{moment(donation['pickup_starttime']).format("MMM Do")}</Text>
                    </Left>
                    <Body>
-                     <Text>{donation['product_type']}: {donation['product_description']}</Text>
+                     <Text style={styles.text}>{donation['product_description']}</Text>
+                     <Text note>Type: {donation['product_type']}</Text>
                      <Text note numberOfLines={1}>Donor: {thisUser(donation['user'])}</Text>
                    </Body>
                    <Right>
-                     <Button transparent>
-                       <Text>{donation['status']}</Text>
+                     <Button style={styles.detailButton} >
+                       <Text style={styles.buttonText}>Details</Text>
                      </Button>
                    </Right>
                  </ListItem>
@@ -74,8 +75,46 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: '#D3D3D3',
     margin: 10,
+  },
+  noticeText: {
+    textAlign: 'center',
+    fontFamily: 'Futura',
+    paddingTop: 20,
+    paddingBottom: 10,
+    color: '#FF4500',
+  },
+  detailButton: {
+    backgroundColor: 'tomato',
+    color: 'white',
+    height: 25,
+    width: 80,
+    marginRight: 7,
+    justifyContent: 'center',
+  },
+  donationButtonList: {
+    flexDirection: 'row',
+    marginTop: 5,
+  },
+  buttonText: {
+    fontFamily: 'Futura',
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  topLine: {
+    flexDirection: 'row',
+  },
+  dateText: {
+    fontFamily: 'Futura',
+    fontWeight: 'bold',
+    textAlignVertical: 'top',
+  },
+  badge: {
+    backgroundColor: 'black',
+    fontFamily: 'Futura',
+  },
+  text: {
+    fontFamily: 'Futura'
   }
-
 })
 
 export { DoneeSchedule }

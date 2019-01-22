@@ -7,7 +7,7 @@ class DonationSchedule extends Component {
   render() {
     const { user, donations, users } = this.props.screenProps
     const filteredDonations = donations.filter(donation => donation['user'] === user['id'])
-
+    console.log(user)
     const thisUser = (id) => {
       if (id == null) {
         return ""
@@ -44,7 +44,7 @@ class DonationSchedule extends Component {
                    </Left>
                    <Body>
                      <View style={styles.topLine}>
-                       <Text>{donation['product_description']}</Text>
+                       <Text style={styles.text}>{donation['product_description']}</Text>
 
                        <Badge style={{backgroundColor: 'black'}}>
                          <Text style={{fontFamily: 'Futura'}}>{donation['status']}</Text>
@@ -126,7 +126,9 @@ const styles = StyleSheet.create({
   badge: {
     backgroundColor: 'black',
     fontFamily: 'Futura',
-
+  },
+  text: {
+    fontFamily: 'Futura'
   }
 })
 
