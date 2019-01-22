@@ -17,7 +17,6 @@ class DoneeSchedule extends Component {
       }
     }
 
-
     if (filteredDonations.length == 0) {
       return (
         <Container>

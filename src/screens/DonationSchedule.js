@@ -52,9 +52,10 @@ class DonationSchedule extends Component {
                      </View>
                      <Text note>Type: {donation['product_type']} </Text>
 
-                     <Text note numberOfLines={1}>Donee: {thisUser(donation['donee'])}</Text>
+                     <Text note numberOfLines={1} style={{ marginTop: 5 }}>Donee: {thisUser(donation['donee'])}</Text>
                      <View style={styles.donationButtonList}>
-                       <Button style={styles.detailButton}>
+                       <Button style={styles.detailButton}
+                          onPress={() => this.props.navigation.navigate('DonorDonationDetail', {donationID: donation['id']})}>
                          <Text style={styles.buttonText}>Details</Text>
                        </Button>
                        <Button style={styles.detailButton} >

@@ -217,7 +217,7 @@ const DoneeStackNavigator = createStackNavigator({
         headerRight: (
           <Icon
             style={{ paddingRight: 30, color: 'white' }}
-            onPress={() => navigation.openDrawer('Home')}
+            onPress={() => navigation.navigate('Welcome')}
             name="log-out"
             size={30}
           />
