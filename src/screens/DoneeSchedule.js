@@ -6,7 +6,8 @@ import moment from 'moment';
 class DoneeSchedule extends Component {
   render() {
     const { user, donations, users } = this.props.screenProps
-    const filteredDonations = donations.filter(donation => donation['donee'] === user['id'])
+    const filteredDonations = donations.filter(donation =>
+      donation['donee'] === user['id']).sort(donation=> donation['pickup_starttime']).reverse();
 
     const thisUser = (id) => {
       if (id == null) {

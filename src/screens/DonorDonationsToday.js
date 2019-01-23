@@ -15,7 +15,7 @@ class DonorDonationsToday extends Component {
     const donationsToday = filteredDonations.filter(donation =>
       moment(donation['pickup_starttime']).format("YYYY-MM-DD") == today);
     const donationsAvailableToday = donationsToday.filter(donation =>
-      donation['status'] == 'posted')
+      donation['status'] == 'posted').sort(donation => donation['product_description'])
 
 
     const thisUser = (id) => {
