@@ -51,9 +51,9 @@ class AddDonation extends Component {
 
   resetState = () => {
     this.setState({
-      productType: '',
+      productType: "",
       productDescription: '',
-      measurement: '',
+      measurement: "",
       quantity: '',
       pickupDetails: '',
       pickupStartTime: '',
@@ -64,6 +64,7 @@ class AddDonation extends Component {
       productOptions: ["Meat or Fish", "Produce", "Dairy", "Beverages",
         "Chilled or Frozen", "Shelf Stable", ""],
       measurementOptions: ["lb", "crates", "liters", "gallons", "bags", "pieces", ""],
+
     });
   }
 
@@ -73,8 +74,9 @@ class AddDonation extends Component {
     await this.props.screenProps.addDonationCallback(this.state);
     console.log("3");
     await this.resetState();
-    console.log(this.state);
-    console.log("4");
+    await this.resetDropdown.select(-1)
+    await this.resetDropdownType.select(-1)
+
 
   }
 
@@ -104,12 +106,13 @@ class AddDonation extends Component {
           <Text style={styles.title}>Add Donation</Text>
           <View style={styles.inputContainer}>
             <Text style={styles.dateText}>Product Type</Text>
-            <ModalDropdown
+            <ModalDropdown ref={ (ref) => this.resetDropdownType = ref }
               textStyle={{color: 'gray', padding: 30, fontFamily: 'Futura'}}
               dropdownStyle={{height: 210}}
               dropdownTextStyle={{color: 'black', backgroundColor: '#9ACD32',
                 width:130, textAlign: 'center', fontFamily: 'Futura'}}
               dropdownTextHighlightStyle={{backgroundColor: 'tomato'}}
+              defaultValue="Please choose..."
               options={this.state.productOptions}
               value={this.state.productOptions}
               onSelect={ value => this.setState({ productType: (String(this.state.productOptions[value]) )})}
@@ -127,7 +130,7 @@ class AddDonation extends Component {
 
           <View style={styles.inputContainer}>
             <Text style={styles.dateText}>Measurement</Text>
-            <ModalDropdown
+            <ModalDropdown ref={ (ref) => this.resetDropdown = ref }
               dropdownStyle={{height: 210}}
               textStyle={{color: 'gray', padding: 30, fontFamily: 'Futura'}}
               dropdownTextStyle={{color: 'black', backgroundColor: '#9ACD32',
