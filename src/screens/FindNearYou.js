@@ -5,6 +5,7 @@ import { MapView } from 'expo';
 import axios from 'axios';
 import moment from 'moment'
 
+
  // FOR USER MARKER BUT NO CURRENTLY WORKING WITH DEPLOYED BACKEND
 // latitude: this.state.userMarker.latitude,
 // longitude: this.state.userMarker.longitude,

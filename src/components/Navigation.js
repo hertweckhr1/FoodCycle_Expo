@@ -154,22 +154,7 @@ const StackNavigator = createStackNavigator({
     SignUp: {
       screen: SignUpForm,
       navigationOptions: ({navigation}) => ({ //don't forget parentheses around the object notation
-        title: 'SignUp',
         headerLeft: <HeaderBackButton onPress={() => navigation.navigate('Welcome')} />
-      })
-    },
-    DonorDonationsToday: {
-      screen: DonorDonationsToday,
-      navigationOptions: ({navigation}) => ({ //don't forget parentheses around the object notation
-        title: 'SignUp',
-        headerLeft: <HeaderBackButton onPress={() => navigation.navigate('FindNearYou')} />
-      })
-    },
-    DoneeDonationDetail: {
-      screen: DoneeDonationDetail,
-      navigationOptions: ({navigation}) => ({ //don't forget parentheses around the object notation
-        title: 'SignUp',
-        headerLeft: <HeaderBackButton onPress={() => navigation.navigate('FindByProduct')} />
       })
     },
     DonorDonationDetail: {
@@ -204,7 +189,20 @@ const DoneeStackNavigator = createStackNavigator({
     DoneeTabNavigator: DoneeTabNavigator,
     SignUp: {
       screen: SignUpForm,
-    }
+    },
+    DonorDonationsToday: {
+      screen: DonorDonationsToday,
+      navigationOptions: ({navigation}) => ({ //don't forget parentheses around the object notation
+        headerLeft: <HeaderBackButton onPress={() => navigation.navigate('FindNearYou')} />
+      })
+    },
+    DoneeDonationDetail: {
+      screen: DoneeDonationDetail,
+      // navigationOptions: ({navigation}) => ({ //don't forget parentheses around the object notation
+      //   title: 'SignUp',
+      //   headerLeft: <HeaderBackButton onPress={() => navigation.navigate('FindByProduct')} />
+      // })
+    },
   },
   {
     defaultNavigationOptions: ({ navigation }) => {

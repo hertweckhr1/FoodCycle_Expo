@@ -58,9 +58,6 @@ class DonationSchedule extends Component {
                           onPress={() => this.props.navigation.navigate('DonorDonationDetail', {donationID: donation['id']})}>
                          <Text style={styles.buttonText}>Details</Text>
                        </Button>
-                       <Button style={styles.detailButton} >
-                         <Text style={styles.buttonText}>Edit</Text>
-                       </Button>
                        <Button style={styles.detailButton}
                           onPress={() => this.props.screenProps.deleteDonationCallback(donation['id'])}>
                          <Text style={styles.buttonText}>Delete</Text>
