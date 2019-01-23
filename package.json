@@ -15,9 +15,9 @@
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-check-box": "^2.1.7",
+    "react-native-elements": "^0.19.1",
     "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-modal-dropdown": "^0.6.2",
-    "react-native-search-box": "0.0.19",
     "react-navigation": "^3.0.9"
   },
   "devDependencies": {
