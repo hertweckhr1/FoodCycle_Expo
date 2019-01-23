@@ -4,6 +4,9 @@ import { H1, Container, Button, Thumbnail, Body, Left, Right, Content, List, Lis
 import { SearchBar } from 'react-native-elements';
 import moment from 'moment';
 
+// need to fix so it 'reruns' axios request for when you add a pickup
+// list number decreases
+
 class FindByProduct extends Component {
     constructor(props) {
     super(props);
@@ -56,8 +59,9 @@ class FindByProduct extends Component {
     return (
       <SearchBar
         placeholder="Type Here..."
-        lightTheme
-        round
+        inputStyle={{backgroundColor: 'black', fontFamily: 'Futura'}}
+        placeholderTextColor={'#ffffff'}
+        containerStyle={{backgroundColor: '#000000', borderRadius: 5}}
         onChangeText={text => this.searchFilterFunction(text)}
         autoCorrect={false}
       />
@@ -83,7 +87,7 @@ class FindByProduct extends Component {
             <View style={styles.titleView}>
               <H1 style={styles.headerText}>Donations Available Today</H1>
             </View>
-            <View>
+            <View style={{marginLeft: 15, marginRight:15,}}>
               {this.renderHeader()}
             </View>
             <List dataArray={this.state.data}
