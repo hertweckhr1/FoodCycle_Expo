@@ -17,6 +17,7 @@
     "react-native-check-box": "^2.1.7",
     "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-modal-dropdown": "^0.6.2",
+    "react-native-search-box": "0.0.19",
     "react-navigation": "^3.0.9"
   },
   "devDependencies": {
