@@ -24,3 +24,6 @@ Uses a backend API using Django with Postgresql database.
 Link to to API:
 - [Github](https://github.com/hertweckhr1/api_foodcycle)
 - [Direct Link](http://104.199.122.67:8000/api/user/donee-info/)
+
+## Screenshots
+![Add Donation](https://media.giphy.com/media/BZhrlNyvQwqNnrcwP8/giphy.gif)
