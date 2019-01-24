@@ -13,6 +13,8 @@ class UserDetails extends React.Component {
     // console.log(today)
     const donationsToday = filteredDonations.filter(donation =>
       moment(donation['pickup_starttime']).format("YYYY-MM-DD") == today);
+    const totalDonationsToday = donations.filter(donation =>
+      moment(donation['pickup_starttime']).format("YYYY-MM-DD") == today);
     const pickedupDonations = donationsToday.filter(donation => donation['status'] == 'picked-up')
 
     const listLength = (list) => {
@@ -52,8 +54,8 @@ class UserDetails extends React.Component {
             <Row style={{marginTop: 10}}>
               <Col style={{ backgroundColor: 'tomato', height: 190,
                  marginLeft: 10, marginRight: 10, borderRadius: 8 }}>
-                <Text style={styles.containerHeaderText}>Meals Donated Equivalent</Text>
-                <Text style={styles.numberText}>{donations.length}</Text>
+                <Text style={styles.containerHeaderText}>City-wide Donations Today</Text>
+                <Text style={styles.numberText}>{totalDonationsToday.length}</Text>
               </Col>
             </Row>
           </Grid>
