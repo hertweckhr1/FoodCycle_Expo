@@ -27,3 +27,4 @@ Link to to API:
 
 ## Screenshots
 ![Add Donation](https://media.giphy.com/media/BZhrlNyvQwqNnrcwP8/giphy.gif)
+![Map Search](https://media.giphy.com/media/foaUOeBa6S98kBY0cD/giphy.gif)
