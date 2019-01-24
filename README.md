@@ -14,12 +14,12 @@ Mobile App Idea inspired to connect supermarkets, restaurants, and farms with fo
 - `react-native link`
 - in app.json and FindNearYou.js, insert google maps api key at `INSERT_GOOGLE_MAPS_API_KEY_HERE`
 
-To run: 
+**To run:**
 - expo start
 - select i for ios to open simulator 
 
 ## API Reference
 Uses a backend API using Django with Postgresql database. 
 Link to to API:
-- [Github:](https://github.com/hertweckhr1/api_foodcycle)
-- [Direct Link:](http://104.199.122.67:8000/api/user/donee-info/)
+- [Github](https://github.com/hertweckhr1/api_foodcycle)
+- [Direct Link](http://104.199.122.67:8000/api/user/donee-info/)
