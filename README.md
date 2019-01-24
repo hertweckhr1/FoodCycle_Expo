@@ -26,5 +26,7 @@ Link to to API:
 - [Direct Link](http://104.199.122.67:8000/api/user/donee-info/)
 
 ## Screenshots
+![Log In](https://media.giphy.com/media/ftdik1dTsVRn2xZ7aR/giphy.gif)
 ![Add Donation](https://media.giphy.com/media/BZhrlNyvQwqNnrcwP8/giphy.gif)
 ![Map Search](https://media.giphy.com/media/foaUOeBa6S98kBY0cD/giphy.gif)
+![Search](https://media.giphy.com/media/69zP23XNbqVeDwbWqA/giphy.gif)
