@@ -7,9 +7,12 @@ Mobile App Idea inspired to connect supermarkets, restaurants, and farms with fo
 
 ## Setup 
 - install expo 
-  - npm install -g expo-cli
-- npm install
-- react-native link 
+  - `npm install -g expo-cli`
+- If running on Mac, open simulator 
+- To run on android, install android studio and set up simulator 
+- `npm install`
+- `react-native link`
+- in app.json and FindNearYou.js, insert google maps api key at `INSERT_GOOGLE_MAPS_API_KEY_HERE`
 
 To run: 
 - expo start
