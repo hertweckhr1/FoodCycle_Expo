@@ -9,6 +9,7 @@ Mobile App Idea inspired to connect supermarkets, restaurants, and farms with fo
 ## Setup 
 - install expo 
   - `npm install -g expo-cli`
+- insert google maps apki key in `app.json` and `FindNearYou.js` where is says `PUT_GOOGLE_MAPS_KEY_HERE_IN_QUOTATIONS`
 - If running on Mac, open simulator 
 - To run on android, install android studio and set up simulator 
 - `npm install`
