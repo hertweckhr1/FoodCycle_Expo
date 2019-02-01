@@ -29,7 +29,7 @@ class FindNearYou extends Component {
     const { user } = this.props.screenProps
     // const first_donation = donations[0];
     // const rightUser = users.find(user => user['id'] == first_donation['donee']);
-    const key = 'AIzaSyA88aLue_PRkIpUxIAHFiD7e7Mg5MfXagY';
+    const key = 'PUT_GOOGLE_MAPS_KEY_HERE_IN_QUOTATIONS';
     const address = `${user['street_address']} ${user['city']} ${user['state']} ${user['zip']}`;
     const URL = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${key}`;
     const correctURL = encodeURI(URL);
